@@ -2,43 +2,40 @@
     "programs": [
         {
             "name": "fish",
-            "install": {
-                "Fedora Linux,Nobara": {
-                    "steps": [
-                        "sudo dnf install -y fish"
-                    ]
-                }
+            "installation": {
+                "Fedora Linux,Nobara": [
+                    "sudo dnf install -y fish"
+                ]
+            },
+            "configuration": {
+                "*": [
+                    "chsh -s /usr/bin/fish"
+                ]
             }
         },
         {
             "name": "lvim",
-            "install": {
-                "Fedora Linux,Nobara": {
-                    "steps": [
-                        "LV_BRANCH='release-1.2/neovim-0.8' bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/fc6873809934917b470bff1b072171879899a36b/utils/installer/install.sh) -- --yes"
-                    ]
-                }
+            "installation": {
+                "Fedora Linux,Nobara": [
+                    "LV_BRANCH='release-1.2/neovim-0.8' bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/fc6873809934917b470bff1b072171879899a36b/utils/installer/install.sh) -- --yes"
+                ]
             },
             "dependencies": {
                 "programs": [
                     {
                         "name": "nvim",
-                        "install": {
-                            "Fedora Linux,Nobara": {
-                                "steps": [
-                                    "sudo dnf install -y neovim"
-                                ]
-                            } 
+                        "installation": {
+                            "Fedora Linux,Nobara": [
+                                "sudo dnf install -y neovim"
+                            ]
                         }
                     },
                     {
                         "name": "git",
-                        "install": {
-                            "Fedora Linux,Nobara": {
-                                "steps": [
-                                    "sudo dnf install -y git"
-                                ]
-                            }
+                        "installation": {
+                            "Fedora Linux,Nobara": [
+                                "sudo dnf install -y git"
+                            ]
                         }
                     },
                     {
@@ -58,12 +55,10 @@
                     },
                     {
                         "name": "cargo",
-                        "install": {
-                            "Fedora Linux,Nobara": {
-                                "steps":[
-                                    "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
-                                ]
-                            }
+                        "installation": {
+                            "Fedora Linux,Nobara": [
+                                "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
+                            ]
                         }
                     }
                 ]
@@ -71,12 +66,10 @@
         },
         {
             "name": "kitty",
-            "install": {
-                "Fedora Linux,Nobara": {
-                    "steps":[
-                        "sudo dnf install -y kitty"
-                    ]
-                }
+            "installation": {
+                "Fedora Linux,Nobara": [
+                    "sudo dnf install -y kitty"
+                ]
             }
         }
     ]
