@@ -9,6 +9,7 @@
             },
             "configuration": {
                 "*": [
+                    "echo 2 1 3 2 1 1 1 1 2 2 y | tide configure >/dev/null",
                     "chsh -s /usr/bin/fish"
                 ]
             }
