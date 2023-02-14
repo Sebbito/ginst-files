@@ -19,12 +19,18 @@
     steps:
     - echo "Use chsh -s /usr/bin/fish" to change the shell
   dependencies:
-    - fisher
+    - name: fisher
       installation:
-        - curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+        - distro:
+          - "*"
+          steps:
+          - curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
       configuration:
-        - fisher install IlanCosman/tide@v5
-        - fisher install jomik/fish-gruvbox
+        - distro:
+          - "*"
+          steps:
+          - fisher install IlanCosman/tide@v5
+          - fisher install jomik/fish-gruvbox
       dependencies:
 
 - name: lvim,
@@ -89,9 +95,12 @@
     steps:
       - curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
   configuration:
-    - ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
-    - cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications/
-    - cp ~/.local/kitty.app/share/applications/kitty-open.desktop ~/.local/share/applications/
-    - sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty*.desktop
-    - sed -i "s|Exec=kitty|Exec=/home/$USER/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty*.desktop
+        - distro:
+          - "*"
+          steps:
+          - ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
+          - cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications/
+          - cp ~/.local/kitty.app/share/applications/kitty-open.desktop ~/.local/share/applications/
+          - sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty*.desktop
+          - sed -i "s|Exec=kitty|Exec=/home/$USER/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty*.desktop
   dependencies:
