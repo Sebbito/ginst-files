@@ -33,7 +33,7 @@
           - fisher install jomik/fish-gruvbox
       dependencies:
 
-- name: lvim,
+- name: lvim
   installation:
   - distro:
     - '*'
@@ -79,7 +79,7 @@
         installation:
         configuration:
         dependencies:
-      - name: cargo,
+      - name: cargo
         installation:
           - distro:
             - '*'
