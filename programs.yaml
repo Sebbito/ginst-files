@@ -33,74 +33,83 @@
           - fisher install jomik/fish-gruvbox
       dependencies:
 
-- name: lvim,
+- name: lvim
   installation:
   - distro:
     - '*'
     steps:
-    - LV_BRANCH='release-1.2/neovim-0.8' bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/fc6873809934917b470bff1b072171879899a36b/utils/installer/install.sh) -- --yes"
+    - bash -c "LV_BRANCH='release-1.2/neovim-0.8' bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/fc6873809934917b470bff1b072171879899a36b/utils/installer/install.sh) -- --yes"
   configuration:
   dependencies:
-      - name: nvim
-        installation:
+    - name: nvim
+      installation:
+      - distro:
+        - Fedora Linux
+        - Nobara
+        steps:
+        - sudo dnf install -y neovim
+      configuration:
+      dependencies:
+    - name: git
+      installation:
         - distro:
           - Fedora Linux
           - Nobara
           steps:
-          - sudo dnf install -y neovim
-        configuration:
-        dependencies:
-      - name: git
-        installation:
-          - distro:
-            - Fedora Linux
-            - Nobara
-            steps:
-            - sudo dnf install -y git
-        configuration:
-        dependencies:
-      - name: make
-        installation:
-        configuration:
-        dependencies:
-      - name: pip
-        installation:
-        configuration:
-        dependencies:
-      - name: python3
-        installation:
-        configuration:
-        dependencies:
-      - name: npm
-        installation:
-        configuration:
-        dependencies:
-      - name: node
-        installation:
-        configuration:
-        dependencies:
-      - name: cargo,
-        installation:
-          - distro:
-            - '*'
-            steps:
-            - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-        configuration:
-        dependencies:
+          - sudo dnf install -y git
+      configuration:
+      dependencies:
+    - name: make
+      installation:
+      configuration:
+      dependencies:
+    - name: pip
+      installation:
+        - distro:
+          - '*'
+          steps:
+            - python -m ensurepip
+      configuration:
+      dependencies:
+        - name: python3
+          installation:
+            - distro:
+              - Fedora Linux
+              - Nobara
+              steps:
+              - sudo dnf install -y python3
+          configuration:
+          dependencies:
+    - name: npm
+      installation:
+      - distro:
+        - Fedora Linux
+        - Nobara
+        steps:
+        - sudo dnf install -y npm
+      configuration:
+      dependencies:
+    - name: cargo
+      installation:
+        - distro:
+          - '*'
+          steps:
+          - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+      configuration:
+      dependencies:
 - name: kitty
   installation:
   - distro:
-    - Fedora Linux
-    - Nobara
+    - '*'
     steps:
       - curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
   configuration:
-        - distro:
-          - "*"
-          steps:
-          - ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
-          - cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications/
-          - cp ~/.local/kitty.app/share/applications/kitty-open.desktop ~/.local/share/applications/
-          - sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty*.desktop
-          - sed -i "s|Exec=kitty|Exec=/home/$USER/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty*.desktop
+    - distro:
+      - "*"
+      steps:
+      - ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
+      - cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications/
+      - cp ~/.local/kitty.app/share/applications/kitty-open.desktop ~/.local/share/applications/
+      - sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty*.desktop
+      - sed -i "s|Exec=kitty|Exec=/home/$USER/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty*.desktop
   dependencies:
